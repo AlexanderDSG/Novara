@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novara · Acabados que Inspiran</title>
+  <meta name="description"
+    content="Novara — pisos flotantes, SPC, bambú y césped sintético en Ibarra. Acabados que transforman tus espacios." />
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Bootstrap (grid + componentes JS: acordeón / carrusel) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Tailwind (utilidades puntuales) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false }, // evita que Tailwind resetee los estilos de Bootstrap/propios
+      blocklist: ["collapse", "collapsing"], // evita choque con las clases .collapse del acordeón de Bootstrap
+      theme: {
+        extend: {
+          colors: {
+            ink: "#17140f",
+            wood: "#a96b2e",
+            woodDeep: "#7c4a1e",
+            brass: "#c9a66b",
+            moss: "#3e5c3a",
+            paper: "#f4efe6",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Activa los estados iniciales "ocultos" antes de que pinte el body,
+       para que no haya parpadeo (FOUC) del contenido ya visible -->
+  <script>document.documentElement.classList.add('js-ready');</script>
+</head>
+
+<body>
+  <!-- ============ NAV ============ -->
+  <header class="nv-nav" id="nvNav">
+    <div class="nv-nav__inner">
+      <a href="#top" class="nv-logo">
+        <span class="nv-logo__image">
+          <img src="img/logo.png" alt="Novara" />
+        </span>
+        <span class="nv-logo__text">NOVARA</span>
+      </a>
+      <nav class="nv-nav__links" id="nvNavLinks">
+        <a href="#productos">Productos</a>
+        <a href="#antes-despues">Antes y después</a>
+        <a href="#videos">Videos</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a href="https://wa.me/593984990359?text=Hola%20Novara%2C%20quisiera%20cotizar%20un%20piso" target="_blank"
+        rel="noopener" class="nv-btn nv-btn--brass d-none d-md-inline-flex">
+        Cotiza ahora
+      </a>
+
+      <button class="nv-burger" id="nvBurger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="nv-hero" id="top">
+    <div class="nv-hero__bg" aria-hidden="true">
+      <img id="heroBgImg" src="img/SCP.jpg" alt="" />
+    </div>
+    <div class="nv-hero__scrim" aria-hidden="true"></div>
+    <div class="nv-hero__bottom-fade" aria-hidden="true"></div>
+
+    <div class="nv-hero__inner">
+      <div class="nv-hero__copy">
+        <p class="nv-eyebrow" id="heroEyebrow">Ibarra · Imbabura</p>
+
+        <h1 class="nv-hero__title" id="heroTitle">
+          <span class="nv-line"><span class="nv-line__inner">Acabados que</span></span>
+          <span class="nv-line"><span class="nv-line__inner nv-accent">inspiran cada</span></span>
+          <span class="nv-line"><span class="nv-line__inner">espacio.</span></span>
+        </h1>
+
+        <p class="nv-hero__lead">
+          Pisos flotantes, laminados, SPC, bambú y césped sintético. Elegimos
+          el material, tú eliges cómo se siente tu casa.
+        </p>
+
+        <div class="nv-hero__actions">
+          <a href="#productos" class="nv-btn nv-btn--brass"> Ver catálogo </a>
+
+          <a href="https://wa.me/593984990359" target="_blank" rel="noopener" class="nv-btn nv-btn--ghost">
+            <i class="bi bi-whatsapp"></i>
+            Escríbenos
+          </a>
+        </div>
+
+        <div class="nv-hero__stats" id="heroStats">
+          <div>
+            <strong data-count="75" data-suffix="+">0</strong>
+            <span>colores y acabados</span>
+          </div>
+
+          <div>
+            <strong data-count="4.95" data-decimals="2">0</strong>
+            <span>USD/m² césped sintético</span>
+          </div>
+
+          <div>
+            <strong data-count="100" data-suffix="%">0</strong>
+            <span>resistente al agua (SPC)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta "catálogo" flotante (solo escritorio/tablet grande) -->
+    <div class="nv-showcase" id="nvShowcase">
+      <div class="nv-showcase__main">
+        <img id="nvShowcaseImg" src="img/SCP.jpg" alt="" />
+        <div class="nv-showcase__caption">
+          <span id="nvShowcaseLabel">Piso flotante laminado</span>
+        </div>
+      </div>
+
+      <div class="nv-showcase__thumbs" id="nvShowcaseThumbs">
+        <button type="button" class="nv-showcase__thumb is-active" data-image="img/SCP.jpg"
+          data-label="Piso flotante laminado" aria-label="Piso flotante laminado">
+          <img src="img/SCP.jpg" alt="" />
+        </button>
+
+        <button type="button" class="nv-showcase__thumb" data-image="img/cespedsintetico2.jpg"
+          data-label="Cesped Sintetico" aria-label="Cesped Sintetico">
+          <img src="img/cespedsintetico2.jpg" alt="" />
+        </button>
+
+        <button type="button" class="nv-showcase__thumb" data-image="img/pisobambu2.jpeg" data-label="Piso Bambu"
+          aria-label="Piso Bambu">
+          <img src="img/pisobambu2.jpeg" alt="" />
+        </button>
+      </div>
+    </div>
+
+    <div class="nv-hero__grain"></div>
+  </section>
+
+  <!-- ============ PRODUCTOS (scroll horizontal) ============ -->
+  <section class="nv-products" id="productos">
+    <div class="nv-section-head reveal">
+      <p class="nv-eyebrow">Catálogo</p>
+      <h2>Un piso para cada superficie</h2>
+      <p class="nv-section-lead">
+        Desliza para conocer cada línea. Cada acabado está pensado para un uso
+        distinto de la casa.
+      </p>
+    </div>
+
+    <div class="nv-gallery-wrap">
+      <button class="nv-arrow nv-arrow--left" id="galLeft" aria-label="Anterior">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+
+      <div class="nv-gallery" id="nvGallery">
+        <!-- PRODUCTO 1 -->
+        <article class="nv-card">
+          <div class="nv-card__image">
+            <img src="img/PisoLaminado.jpg" alt="Piso flotante laminado Novara" loading="lazy" />
+          </div>
+
+          <div class="nv-card__body">
+            <p class="nv-card__tag">Piso flotante laminado</p>
+
+            <h3>Elegancia que se siente</h3>
+
+            <p>
+              Sistema de instalación flotante, acabado moderno y alta
+              resistencia al uso diario. Más de 75 colores.
+            </p>
+
+            <div class="nv-card__price">
+              <span>Desde</span>
+              $8,95
+              <small>/m²</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 2 -->
+        <article class="nv-card">
+          <div class="nv-card__image">
+            <img src="img/PisoSpc.jpg" alt="Piso SPC Novara" loading="lazy" />
+          </div>
+
+          <div class="nv-card__body">
+            <p class="nv-card__tag">Piso SPC</p>
+
+            <h3>De última generación</h3>
+
+            <p>
+              100% resistente al agua, núcleo rígido, aislante acústico y
+              sistema click sin pegamento. Formato XL 1.525m × 0.23m.
+            </p>
+
+            <div class="nv-card__price">
+              <span>Consultar</span>
+              precio
+              <small>por m²</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 3 -->
+        <article class="nv-card">
+          <div class="nv-card__image">
+            <img src="img/PisoBambu.jpg" alt="Piso de bambú Novara" loading="lazy" />
+          </div>
+
+          <div class="nv-card__body">
+            <p class="nv-card__tag">Piso de bambú</p>
+
+            <h3>Natural, elegante y sostenible</h3>
+
+            <p>
+              100% ecológico y renovable, compatible con sistema de piso
+              radiante y gran resistencia a la humedad.
+            </p>
+
+            <div class="nv-card__price">
+              <span>Desde</span>
+              $44,95
+              <small>/m²</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 4 -->
+        <article class="nv-card">
+          <div class="nv-card__image">
+            <img src="img/CespedSintetico.jpg" alt="Césped sintético Novara" loading="lazy" />
+          </div>
+
+          <div class="nv-card__body">
+            <p class="nv-card__tag">Césped sintético</p>
+
+            <h3>Verde todo el año</h3>
+
+            <p>
+              Apariencia natural, cero mantenimiento, ideal para patios,
+              terrazas y áreas infantiles.
+            </p>
+
+            <div class="nv-card__price">
+              <span>Desde</span>
+              $4,95
+              <small>/m²</small>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button class="nv-arrow nv-arrow--right" id="galRight" aria-label="Siguiente">
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="nv-dots" id="nvGalleryDots" aria-hidden="true"></div>
+
+    <div class="nv-fade-bottom nv-fade-bottom--to-ink" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ ANTES Y DESPUÉS ============ -->
+  <section class="nv-compare-section" id="antes-despues">
+    <div class="nv-section-head reveal">
+      <p class="nv-eyebrow">Resultados reales</p>
+      <h2>El antes y el después habla por nosotros</h2>
+      <p class="nv-section-lead">
+        Arrastra el círculo sobre cada imagen para ver la transformación.
+        Desliza hacia los lados para conocer más proyectos.
+      </p>
+    </div>
+
+    <div class="nv-gallery-wrap">
+      <button class="nv-arrow nv-arrow--left" id="compareLeft" aria-label="Anterior">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+
+      <div class="nv-compare-gallery" id="nvCompareGallery">
+
+        <article class="nv-compare-card">
+          <div class="nv-compare" data-compare>
+            <div class="nv-compare__after">
+              <img src="img/PisoLaminado.jpg" alt="Después: piso flotante instalado" />
+              <span class="nv-compare__tag nv-compare__tag--after">Después</span>
+            </div>
+            <div class="nv-compare__before" style="width: 50%">
+              <img src="img/SCP.jpg" alt="Antes de instalar el piso" />
+              <span class="nv-compare__tag nv-compare__tag--before">Antes</span>
+            </div>
+            <div class="nv-compare__handle" style="left: 50%">
+              <span class="nv-compare__handle-grip"><i class="bi bi-arrows-expand"></i></span>
+            </div>
+          </div>
+          <div class="nv-compare-card__body">
+            <h3>Piso flotante laminado</h3>
+            <p>Sala principal, instalación completa en 2 días.</p>
+          </div>
+        </article>
+
+        <article class="nv-compare-card">
+          <div class="nv-compare" data-compare>
+            <div class="nv-compare__after">
+              <img src="img/PisoSpc.jpg" alt="Después: piso SPC instalado" />
+              <span class="nv-compare__tag nv-compare__tag--after">Después</span>
+            </div>
+            <div class="nv-compare__before" style="width: 50%">
+              <img src="img/SCP.jpg" alt="Antes de instalar el piso" />
+              <span class="nv-compare__tag nv-compare__tag--before">Antes</span>
+            </div>
+            <div class="nv-compare__handle" style="left: 50%">
+              <span class="nv-compare__handle-grip"><i class="bi bi-arrows-expand"></i></span>
+            </div>
+          </div>
+          <div class="nv-compare-card__body">
+            <h3>Piso SPC</h3>
+            <p>Cocina, resistente al agua y de fácil mantenimiento.</p>
+          </div>
+        </article>
+
+        <article class="nv-compare-card">
+          <div class="nv-compare" data-compare>
+            <div class="nv-compare__after">
+              <img src="img/PisoBambu.jpg" alt="Después: piso de bambú instalado" />
+              <span class="nv-compare__tag nv-compare__tag--after">Después</span>
+            </div>
+            <div class="nv-compare__before" style="width: 50%">
+              <img src="img/SCP.jpg" alt="Antes de instalar el piso" />
+              <span class="nv-compare__tag nv-compare__tag--before">Antes</span>
+            </div>
+            <div class="nv-compare__handle" style="left: 50%">
+              <span class="nv-compare__handle-grip"><i class="bi bi-arrows-expand"></i></span>
+            </div>
+          </div>
+          <div class="nv-compare-card__body">
+            <h3>Piso de bambú</h3>
+            <p>Dormitorio principal, acabado natural y cálido.</p>
+          </div>
+        </article>
+
+        <article class="nv-compare-card">
+          <div class="nv-compare" data-compare>
+            <div class="nv-compare__after">
+              <img src="img/CespedSintetico.jpg" alt="Después: césped sintético instalado" />
+              <span class="nv-compare__tag nv-compare__tag--after">Después</span>
+            </div>
+            <div class="nv-compare__before" style="width: 50%">
+              <img src="img/SCP.jpg" alt="Antes de instalar el césped" />
+              <span class="nv-compare__tag nv-compare__tag--before">Antes</span>
+            </div>
+            <div class="nv-compare__handle" style="left: 50%">
+              <span class="nv-compare__handle-grip"><i class="bi bi-arrows-expand"></i></span>
+            </div>
+          </div>
+          <div class="nv-compare-card__body">
+            <h3>Césped sintético</h3>
+            <p>Patio trasero, cero mantenimiento todo el año.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <button class="nv-arrow nv-arrow--right" id="compareRight" aria-label="Siguiente">
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="nv-dots nv-dots--light" id="nvCompareDots" aria-hidden="true"></div>
+
+    <div class="nv-fade-bottom nv-fade-bottom--to-ink" aria-hidden="true"></div>
+  </section>
+
+
+  <!-- ============ VIDEOS / REDES ============ -->
+<section class="nv-videos" id="videos">
+    <div class="nv-section-head nv-section-head--light reveal">
+      <p class="nv-eyebrow">Síguenos</p>
+      <h2>Nuestros productos en video</h2>
+      <p class="nv-section-lead">
+        Instalaciones reales, antes y después, y todo el proceso: míralo en
+        TikTok y Facebook.
+      </p>
+    </div>
+
+    <div class="nv-video-grid" id="nvVideoGrid">
+      <!-- VIDEO 1 -->
+      <div class="nv-video-card reveal">
+        <div class="nv-cf-inner">
+        <div class="nv-video-frame">
+          <iframe
+            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2230780764432578&show_text=false"
+            width="100%" height="100%" style="border: none; overflow: hidden" scrolling="no" frameborder="0"
+            allowfullscreen="true" allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                picture-in-picture;
+                web-share;
+              ">
+          </iframe>
+          <div class="nv-video-placeholder">
+            <i class="bi bi-play-fill"></i>
+          </div>
+        </div>
+
+        <p>
+          <i class="bi bi-tiktok"></i>
+          Instalación piso flotante
+        </p>
+        </div>
+      </div>
+
+      <!-- VIDEO 2 - FACEBOOK -->
+      <div class="nv-video-card reveal">
+        <div class="nv-cf-inner">
+        <div class="nv-video-frame">
+          <iframe
+            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F3874605472681582&show_text=false"
+            width="100%" height="100%" style="border: none; overflow: hidden" scrolling="no" frameborder="0"
+            allowfullscreen="true" allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                picture-in-picture;
+                web-share;
+              ">
+          </iframe>
+        </div>
+
+        <p>
+          <i class="bi bi-facebook"></i>
+          Antes y después: sala
+        </p>
+        </div>
+      </div>
+
+      <!-- VIDEO 3 -->
+      <div class="nv-video-card reveal">
+        <div class="nv-cf-inner">
+        <div class="nv-video-frame">
+          <iframe
+            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1662052091471590&show_text=false"
+            width="100%" height="100%" style="border: none; overflow: hidden" scrolling="no" frameborder="0"
+            allowfullscreen="true" allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                picture-in-picture;
+                web-share;
+              ">
+          </iframe>
+        </div>
+        <p>
+          <i class="bi bi-facebook"></i>
+          Showroom Novara Ibarra
+        </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nv-dots nv-dots--light" id="nvVideoDots" aria-hidden="true"></div>
+
+    <div class="nv-fade-bottom nv-fade-bottom--to-paper" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+<section class="nv-faq" id="faq">
+    <div class="nv-section-head reveal">
+      <p class="nv-eyebrow">Preguntas frecuentes</p>
+      <h2>Antes de cotizar</h2>
+    </div>
+
+    <div class="accordion nv-accordion" id="nvFaqAccordion">
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Hacen la instalación o solo venden el material?
+          </button>
+        </h3>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#nvFaqAccordion">
+          <div class="accordion-body">
+            Ofrecemos ambas opciones: puedes llevar el material y hacer tu
+            propia instalación, o coordinar con nuestro equipo la instalación
+            completa con garantía incluida.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿El césped sintético sirve para terrazas y áreas con mascotas?
+          </button>
+        </h3>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#nvFaqAccordion">
+          <div class="accordion-body">
+            Sí. Es seguro, libre de químicos y fácil de limpiar; es una de las
+            líneas más pedidas para patios con niños y mascotas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿El piso SPC realmente resiste el agua?
+          </button>
+        </h3>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#nvFaqAccordion">
+          <div class="accordion-body">
+            Sí, el piso SPC es 100% resistente al agua gracias a su núcleo
+            rígido, ideal para cocinas, baños y zonas húmedas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            ¿Dónde puedo ver los materiales en persona?
+          </button>
+        </h3>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#nvFaqAccordion">
+          <div class="accordion-body">
+            En nuestro showroom en Av. Ricardo Sánchez y Antonio Cordero
+            (esquina), cerca de la pista de bicicross, en Ibarra.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nv-fade-bottom nv-fade-bottom--to-ink" aria-hidden="true"></div>
+  </section>
+  <!-- ============ FOOTER / CONTACTO ============ -->
+  <footer class="nv-footer" id="contacto">
+    <div class="nv-footer__inner">
+      <div class="nv-footer__brand reveal">
+        <div class="nv-logo nv-logo--footer">
+          <span class="nv-logo__image">
+            <img src="img/logo.png" alt="Novara" />
+          </span>
+          <span class="nv-logo__text">NOVARA</span>
+        </div>
+        <p>Acabados que inspiran.</p>
+      </div>
+
+      <div class="nv-footer__col reveal">
+        <h4>Visítanos</h4>
+        <p>
+          <i class="bi bi-geo-alt"></i> Av. Ricardo Sánchez y Antonio Cordero,
+          esquina<br />Cerca de la pista de bicicross · Ibarra
+        </p>
+      </div>
+
+      <div class="nv-footer__col reveal">
+        <h4>Contacto</h4>
+        <p>
+          <i class="bi bi-whatsapp"></i>
+          <a href="https://wa.me/593984990359">0984 990 359</a>
+        </p>
+        <p><i class="bi bi-clock"></i> Lun – Sáb: 9:00 – 18:00</p>
+      </div>
+
+      <div class="nv-footer__col reveal">
+        <h4>Síguenos</h4>
+        <div class="nv-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="nv-footer__bottom">
+      <span>© <span id="nvYear"></span> Novara. Todos los derechos
+        reservados.</span>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/593984990359?text=Hola%20Novara%2C%20quisiera%20más%20información" target="_blank"
+    rel="noopener" class="nv-whatsapp-float" id="nvWhatsappFloat" aria-label="Escríbenos por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/hero-showcase.js"></script>
+  <script src="js/before-after.js"></script>
+  <script src="js/gallery-dots.js"></script>
+  <script src="js/video-coverflow.js"></script>
+</body>
+
+</html>
