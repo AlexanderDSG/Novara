@@ -232,13 +232,7 @@ img{ max-width: 100%; display: block; }
   color: var(--text-on-ink);
 
   padding: 90px 1.5rem 2.5rem;
-
-  /* Sin overflow:hidden ni "dvh": si algún navegador calcula mal
-     la altura, preferimos que el contenido se vea completo (aunque
-     empuje la sección un poco más alta) a que se recorte y
-     desaparezca. "vh" es más universal que "dvh" en WebViews viejos
-     (apps como Facebook/Instagram in-app browser, por ejemplo). */
-  min-height: 100vh;
+  min-height: 105vh;
 
   display: flex;
   align-items: center;
@@ -246,8 +240,8 @@ img{ max-width: 100%; display: block; }
 
 /* Respaldo por si el navegador no entiende dvh para nada: si lo
    entiende, esta línea gana por venir después */
-@supports (min-height: 100dvh){
-  .nv-hero{ min-height: 100dvh; }
+@supports (min-height: 105dvh){
+  .nv-hero{ min-height: 105dvh; }
 }
 
 
@@ -1035,17 +1029,19 @@ img{ max-width: 100%; display: block; }
     font-size: .85rem;
   }
 
-  /* En pantallas angostas el texto ocupa casi todo el ancho,
-     así que oscurecemos más la foto para que siga siendo legible */
+  /* Tablet / celular acostado: oscuro a la izquierda (donde va el
+     texto) y bastante más claro hacia la derecha para que se vea
+     la foto. Para ajustar: sube los números para oscurecer,
+     bájalos para mostrar más foto. */
   .nv-hero__scrim{
     background:
       linear-gradient(
         90deg,
         var(--ink) 0%,
-        rgba(23,20,15,.95) 35%,
-        rgba(23,20,15,.75) 60%,
-        rgba(23,20,15,.4) 80%,
-        rgba(23,20,15,.15) 100%
+        rgba(23,20,15,.92) 28%,
+        rgba(23,20,15,.68) 55%,
+        rgba(23,20,15,.32) 78%,
+        rgba(23,20,15,.10) 100%
       );
   }
 }
@@ -1108,17 +1104,27 @@ img{ max-width: 100%; display: block; }
     font-size: .68rem;
   }
 
-  /* En el teléfono el texto tapa casi toda la foto: la oscurecemos
-     casi por completo y dejamos solo un asomo a la derecha */
+  /* Teléfono: sombreado más ligero para que la foto se vea también
+     hacia la derecha. Para ajustar: sube los números para oscurecer,
+     bájalos para mostrar más foto. */
   .nv-hero__scrim{
     background:
       linear-gradient(
         90deg,
-        var(--ink) 0%,
-        rgba(23,20,15,.97) 55%,
-        rgba(23,20,15,.85) 78%,
-        rgba(23,20,15,.55) 100%
+        rgba(23,20,15,.94) 0%,
+        rgba(23,20,15,.84) 30%,
+        rgba(23,20,15,.58) 60%,
+        rgba(23,20,15,.32) 85%,
+        rgba(23,20,15,.20) 100%
       );
+  }
+
+  /* Con menos sombra detrás, una sombrita en el texto ayuda a que
+     se lea bien aunque la foto quede clara en esa zona */
+  .nv-hero__title,
+  .nv-hero__lead,
+  #heroEyebrow{
+    text-shadow: 0 1px 10px rgba(0,0,0,.55);
   }
 }
 
